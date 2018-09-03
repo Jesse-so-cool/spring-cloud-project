@@ -1,4 +1,4 @@
 server:
   servlet:
-    context-path: /test
+    context-path: /web
   port: 8088
