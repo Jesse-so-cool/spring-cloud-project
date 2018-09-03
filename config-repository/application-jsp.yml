@@ -3,5 +3,5 @@ application.message: Hello Jesse
 # 配置jsp文件的位置和后缀
 spring.mvc:
   view:
-    prefix: /
+    prefix: /WEB-INF/
     suffix: .jsp
