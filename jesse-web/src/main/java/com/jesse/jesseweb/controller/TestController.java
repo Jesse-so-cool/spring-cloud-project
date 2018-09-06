@@ -14,6 +14,14 @@ public class TestController {
         return "test";
     }
 
+    @RequestMapping(value = "/header", method = RequestMethod.GET)
+    public String header() {
+        for (int i = 0; i < 1; i++) {
+
+        }
+        return "header";
+    }
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         for (int i = 0; i < 1; i++) {
@@ -22,4 +30,11 @@ public class TestController {
         return "index";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        for (int i = 0; i < 1; i++) {
+
+        }
+        return "login";
+    }
 }

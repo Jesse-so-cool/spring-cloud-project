@@ -49,6 +49,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -68,7 +73,7 @@
             <!-- 打包时将jsp文件拷贝到META-INF目录下 -->
             <resource>
                 <!-- 指定resources插件处理哪个目录下的资源文件 -->
-                <directory>src/main/webapp</directory>
+                <directory>src/main/resources</directory>
                 <!--注意此次必须要放在此目录下才能被访问到 -->
                 <targetPath>META-INF/resources</targetPath>
                 <includes>
