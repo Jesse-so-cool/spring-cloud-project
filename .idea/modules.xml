@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jesse-config/jesse-config.iml" filepath="$PROJECT_DIR$/jesse-config/jesse-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jesse-eureka/jesse-eureka.iml" filepath="$PROJECT_DIR$/jesse-eureka/jesse-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jesse-project.iml" filepath="$PROJECT_DIR$/jesse-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jesse-web/jesse-web.iml" filepath="$PROJECT_DIR$/jesse-web/jesse-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jesse-zuul/jesse-zuul.iml" filepath="$PROJECT_DIR$/jesse-zuul/jesse-zuul.iml" />
+    </modules>
+  </component>
+</project>
