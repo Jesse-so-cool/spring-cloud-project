@@ -1,7 +1,15 @@
 application.message: Hello Jesse
 
-# 配置jsp文件的位置和后缀
-spring.mvc:
-  view:
-    prefix: /WEB-INF/
-    suffix: .jsp
+## 配置jsp文件的位置和后缀
+#spring.mvc:
+#  view:
+#    prefix: /WEB-INF/
+#    suffix: .ftl
+
+spring.freemarker.cache: false
+spring.freemarker.charset: UTF-8
+spring.freemarker.check-template-location: true
+spring.freemarker.content-type: text/html
+spring.freemarker.expose-request-attributes: true
+spring.freemarker.expose-session-attributes: true
+spring.freemarker.request-context-attribute: request
