@@ -1,0 +1,31 @@
+body {
+    background-color: #f4f5f5;
+}
+
+div {
+    background-color: white;
+}
+
+footer {
+    background-color: white;
+}
+
+.hot {
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.bottom-inline {
+    border-bottom: 1px solid #f6f6f6;
+/ / dibu jia tiao xian
+}
+
+ul li {
+    list-style-type: none;
+}

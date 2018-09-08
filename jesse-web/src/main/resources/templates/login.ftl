@@ -13,7 +13,7 @@
 
     <style>
         .login-bg {
-            background: url(/web/static/img/login-bg.png) 0 0 /*repeat*/;
+            background: url(/web/img/login-bg.png) 0 0 /*repeat*/;
             width: 100%;
             height: 100%;
         }
@@ -70,7 +70,7 @@
 <div class="form-horizontal col-sm-offset-5 col-sm-4 col-sm-offset-5">
     <form class="login-form " action="" method="post" autocomplete="off">
         <h3 align="left" style="margin-left: 35px">用户登录</h3>
-        <div class="form-group form-inline">
+        <div class="form-group form-inline ">
             <i class="fa fa-user fa-lg"></i>
             <input type="text" class="has-success input-lg form-control" placeholder="请输入账号"/>
         </div>

@@ -37,4 +37,12 @@ public class TestController {
         }
         return "login";
     }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit() {
+        for (int i = 0; i < 1; i++) {
+
+        }
+        return "articleEdit";
+    }
 }

@@ -10,23 +10,23 @@
 
     <style>
         .logo {
-            background: url(/web/static/img/logo.png);
+            background: url(/web/img/logo.png);
         }
     </style>
 </head>
 <body>
 <div class="header clearfix">
-    <div style="margin-left: 200px;float: left;height: 5rem;">
+    <div style="margin-left: 20%;height: 5rem;width：60%">
         <a href="index">
-            <img src="/web/static/img/logo.png"/>
+            <img src="/web/img/logo.png"/>
         </a>
     </div>
-    <nav style="margin-right: 100px;margin-top: 70px">
+    <nav style="margin-right: 20%;margin-top: 20px">
         <ul class="nav nav-tabs pull-right">
-            <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation"><a href="login">Login</a></li>
-            <li role="presentation"><a href="admin">Register</a></li>
-            <li role="presentation"><a href="about">About</a></li>
+            <li role="presentation"><a href="/">主页</a></li>
+            <li role="presentation"><a href="login">登陆</a></li>
+            <li role="presentation"><a href="admin">注册</a></li>
+            <li role="presentation"><a href="about">关于我们</a></li>
         </ul>
     </nav>
 
