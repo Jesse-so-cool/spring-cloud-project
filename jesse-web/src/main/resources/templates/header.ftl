@@ -10,7 +10,7 @@
 
     <style>
         .logo {
-            background: url(/web/img/logo.png);
+            background: url(/web/img/cp.jpg);
         }
     </style>
 </head>
@@ -18,7 +18,7 @@
 <div class="header clearfix">
     <div style="margin-left: 20%;height: 5rem;width：60%">
         <a href="index">
-            <img src="/web/img/logo.png"/>
+            <img src="/web/img/cp.jpg" class="img-thumbnail" style="width: 105;"/>
         </a>
     </div>
     <nav style="margin-right: 20%;margin-top: 20px">

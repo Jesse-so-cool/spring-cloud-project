@@ -1,6 +1,8 @@
 package com.jesse.jesseweb.controller;
 
+import com.jesse.jesseweb.auth.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,8 +34,13 @@ public class TestController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        for (int i = 0; i < 1; i++) {
+        return "login";
+    }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPost(Model model, User user) {
+        if (user != null) {
+            model.addAttribute("isSuccess", "true");
         }
         return "login";
     }
