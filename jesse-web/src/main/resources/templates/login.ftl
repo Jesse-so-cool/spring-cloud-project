@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Jesse">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1, maxium-scale=1,minimum-scale=1, user-scalable=no">
+          content="width=device-width, initial-scale=1,  user-scalable=no">
     <title>Spring Boot</title>
     <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <#--<link href="${base}/css/main.css" rel="stylesheet">-->
@@ -65,29 +66,31 @@
 
     </style>
     <script>
-        $(function () {
+        /*$(function () {
             function submit() {
                 $('#form').submit();
             }
-        })
+        })*/
     </script>
 </head>
 
 <body class="login-bg " style="margin-top: 20%;">
 <div class="form-horizontal col-sm-offset-5 col-sm-4 col-sm-offset-5">
-    <form class="login-form " id="form" action="/web/login" method="post" autocomplete="off">
+    <form class="login-form " id="form" action="/login" method="post" autocomplete="off">
         <h3 align="left" style="margin-left: 35px">用户登录</h3>
         <div class="form-group form-inline ">
             <i class="fa fa-user fa-lg"></i>
-            <input type="text" name="username" class="has-success input-lg form-control" placeholder="请输入账号"/>
+            <input type="text" name="username" required class="has-success input-lg form-control" placeholder="请输入账号"/>
         </div>
         <div class="form-group form-inline">
             <i class="fa fa-lock fa-lg"></i>
-            <input type="text" name="password" class=" has-success input-lg form-control" placeholder="请输入密码"/>
+            <input type="text" name="password" required class=" has-success input-lg form-control" placeholder="请输入密码"/>
         </div>
         <div class="form-group ">
-            <#if param??>用户名或密码错误<#else>missing</#if>
-            <button class="btn btn-success btn-lg" style="margin-left: 130px" submit()>登录</button>
+            <#if error.isPresent()>
+                <p>The email or password you have entered is invalid, try again.</p>
+            </#if>
+            <button class="btn btn-success btn-lg" style="margin-left: 130px" type="submit">登录</button>
         <#--</div><div class="form-group ">
             <button class="btn btn-info btn-lg">注册</button>-->
         </div>

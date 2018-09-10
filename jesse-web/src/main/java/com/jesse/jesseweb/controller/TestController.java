@@ -5,7 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class TestController {
@@ -32,18 +36,18 @@ public class TestController {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
+    @RequestMapping(value = "/login", method = {RequestMethod.GET})
+    public ModelAndView login(@RequestParam Optional<String> error) {
+        return new ModelAndView("login", "error", error);
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(Model model, User user) {
         if (user != null) {
             model.addAttribute("isSuccess", "true");
         }
         return "login";
-    }
+    }*/
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit() {
