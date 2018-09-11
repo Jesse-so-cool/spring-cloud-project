@@ -3,7 +3,7 @@ package com.jesse.jesseweb.auth;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class PasswordEncoderImpl implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {

@@ -18,7 +18,7 @@
 <div class="header clearfix">
     <div style="margin-left: 20%;height: 5rem;width：60%">
         <a href="index">
-            <img src="/web/img/cp.jpg" class="img-thumbnail" style="width: 105;"/>
+            <img src="/img/cp.jpg" class="img-thumbnail" style="width: 105;"/>
         </a>
     </div>
     <nav style="margin-right: 20%;margin-top: 20px">

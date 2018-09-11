@@ -1,14 +1,19 @@
 package com.jesse.jesseweb.auth;
 
+import com.jesse.jesseweb.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
  * @author Jesse
@@ -17,41 +22,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    //@Autowired
+    //private MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http
-                .authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .failureForwardUrl("/login?error")
-                .successForwardUrl("/")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/web/")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/index")
-                .permitAll()
-                .and()
-                .httpBasic()
-                .disable()
-                .csrf().disable();//可以解决非thymeleaf的form表单提交被拦截问题*/
+
         http.authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
-                .antMatchers("/login").permitAll()
-                .anyRequest().fullyAuthenticated()
+                //.antMatchers("/", "/index").permitAll()
+                //.antMatchers("/login").permitAll()
+                .anyRequest().fullyAuthenticated()//完整权限可以访问(和authenticated()区别是 authenticated()包括remember-me用户)
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .defaultSuccessUrl("/index")
-                .usernameParameter("username")
+                .loginPage("/login") //跳转的登录页
+                .failureUrl("/login?error")     //登录失败页面
+                .defaultSuccessUrl("/index")    //登录成功跳转页面
+                .usernameParameter("username") //默认为username
+                .loginProcessingUrl("/login") //登录时的请求 其实默认就是/login 只有填写了这个 security才会去将该提交请求拦截并进入 验证
                 .permitAll()
                 .and()
                 .logout()
@@ -63,17 +54,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    @Autowired
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        /*auth
-                .userDetailsService(new MyUserDetailsService());*/
+        *//*auth
+                .userDetailsService(userDetailsService);*//*
         auth
-                .inMemoryAuthentication()
+                .inMemoryAuthentication().passwordEncoder()
                 .withUser("2")
                 .password("2")
                 .roles("USER");
-    }
+    }*/
 
+    /*@Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+
+        UserDetails user =
+                org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
+                        .username("user")
+                        .password("password")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user);
+    }*/
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
@@ -81,6 +85,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/img/**");
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth
+                .inMemoryAuthentication()
+                .withUser("2")
+                .password("2")
+                .roles("USER");
+    }
 
     /*@Override
     protected UserDetailsService userDetailsService() {

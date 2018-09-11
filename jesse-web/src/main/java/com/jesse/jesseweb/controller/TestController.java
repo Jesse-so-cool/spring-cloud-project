@@ -1,8 +1,10 @@
 package com.jesse.jesseweb.controller;
 
-import com.jesse.jesseweb.auth.User;
+import com.jesse.jesseweb.entity.User;
+import com.jesse.jesseweb.enume.Role;
+import com.jesse.jesseweb.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +16,14 @@ import java.util.Optional;
 @Controller
 public class TestController {
 
+    @Autowired
+    private UserMapper userMapper;
+
     @ResponseBody
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() {
-        return "test";
+    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
+    public String createUser(String username) {
+        User user = userMapper.insert(new User(username, "password", Role.USER));
+        return user.toString();
     }
 
     @RequestMapping(value = "/header", method = RequestMethod.GET)

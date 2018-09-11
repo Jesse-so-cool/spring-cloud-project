@@ -14,7 +14,7 @@
 
     <style>
         .login-bg {
-            background: url(/web/img/login-bg.png) 0 0 /*repeat*/;
+            background: url(/img/login-bg.png) 0 0 /*repeat*/;
             width: 100%;
             height: 100%;
         }

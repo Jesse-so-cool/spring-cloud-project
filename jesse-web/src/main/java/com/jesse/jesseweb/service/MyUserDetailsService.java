@@ -1,16 +1,21 @@
-package com.jesse.jesseweb.auth;
+package com.jesse.jesseweb.service;
 
+import com.jesse.jesseweb.enume.Role;
+import com.jesse.jesseweb.entity.CurrentUser;
+import com.jesse.jesseweb.entity.User;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MyUserDetailsService implements UserDetailsService {
+
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public CurrentUser loadUserByUsername(String username) throws UsernameNotFoundException {
         // 封装用户信息，并返回。参数分别是：用户名，密码，用户权限
-        User user = new User(username, "123456",
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        CurrentUser user = new CurrentUser(new User(username, "2", Role.USER));
         return user;
     }
 }
