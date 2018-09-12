@@ -10,7 +10,7 @@
 
     <style>
         .logo {
-            background: url(/web/img/cp.jpg);
+            background: url(/img/cp.jpg);
         }
     </style>
 </head>
@@ -23,10 +23,11 @@
     </div>
     <nav style="margin-right: 20%;margin-top: 20px">
         <ul class="nav nav-tabs pull-right">
-            <li role="presentation"><a href="/">主页</a></li>
-            <li role="presentation"><a href="login">登陆</a></li>
-            <li role="presentation"><a href="admin">注册</a></li>
-            <li role="presentation"><a href="about">关于我们</a></li>
+            <li roleEnum="presentation"><a href="/">主页</a></li><#--
+            <li roleEnum="presentation"><a href="login">登陆</a></li>
+            <li roleEnum="presentation"><a href="admin">注册</a></li>-->
+            <li roleEnum="presentation"><a href="/logout">注销</a></li>
+            <li roleEnum="presentation"><a href="/about">关于我们</a></li>
         </ul>
     </nav>
 

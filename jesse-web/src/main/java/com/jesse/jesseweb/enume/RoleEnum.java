@@ -4,7 +4,7 @@ package com.jesse.jesseweb.enume;
  * @author Jesse
  */
 
-public enum Role {
+public enum RoleEnum {
     //user admin
     USER("USER"),
 
@@ -12,7 +12,7 @@ public enum Role {
 
     private String code;
 
-    Role(String code) {
+    RoleEnum(String code) {
         this.code = code;
     }
 

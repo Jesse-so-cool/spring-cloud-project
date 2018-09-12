@@ -7,13 +7,13 @@
     <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="/web/css/common.css">
-    <link rel="stylesheet" href="/web/css/style.css">
-    <script src="/web/js/jquery.js"></script>
-    <script src="/web/js/jquery.scrollto.js"></script>
-    <script src="/web/js/pagedown.js"></script>
-    <script src="/web/js/pagedown-extra.js"></script>
-    <script src="/web/js/diff.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.scrollto.js"></script>
+    <script src="/js/pagedown.js"></script>
+    <script src="/js/pagedown-extra.js"></script>
+    <script src="/js/diff.js"></script>
     <script>
         $(document).ready(function () {
             var textarea = $('#text'),
@@ -249,7 +249,7 @@
     </script>
     <style>
         .content-img {
-            background: url(/web/img/article-img.jpg) repeat;
+            background: url(/img/article-img.jpg) repeat;
         }
 
     </style>

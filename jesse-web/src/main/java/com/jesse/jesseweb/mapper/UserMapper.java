@@ -1,34 +1,23 @@
 package com.jesse.jesseweb.mapper;
 
 import com.jesse.jesseweb.entity.User;
-import com.jesse.jesseweb.enume.Role;
+import com.jesse.jesseweb.enume.RoleEnum;
+import com.jesse.jesseweb.vo.UserVo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends tk.mybatis.mapper.common.Mapper<User> {
 
-    @Select("SELECT * FROM user")
-    List<User> getAll();
 
-    @Select("SELECT * FROM user WHERE id = #{id}")
-    User getOne(Long id);
-
-    @Insert("INSERT INTO user(id,username,password,role) VALUES(#{id},#{username}, #{password}, #{role})")
-    @Results({
-            @Result(property = "role", column = "role", javaType = Role.class),
-            @Result(property = "id", column = "id"),
-            @Result(property = "username", column = "username"),
-            @Result(property = "password", column = "password"),
+    @Select("select * from user where username=#{username}")
+    @Results(id = "BaseResultMap", value = {
+            @Result(property = "roleList", column = "id", javaType = List.class,
+                    many = @Many(select = "com.jesse.jesseweb.mapper.RoleMapper.selectByUserId"))
     })
-    User insert(User user);
+    User selectByUsername(String username);
 
-    @Update("UPDATE user SET userName=#{username},nick_name=#{nickName} WHERE id =#{id}")
-    void update(User user);
-
-    @Delete("DELETE FROM user WHERE id =#{id}")
-    void delete(Long id);
 
 }

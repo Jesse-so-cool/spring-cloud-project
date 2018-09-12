@@ -34,8 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 //.antMatchers("/", "/index").permitAll()
-                //.antMatchers("/login").permitAll()
-                .anyRequest().fullyAuthenticated()//完整权限可以访问(和authenticated()区别是 authenticated()包括remember-me用户)
+                .antMatchers("/edit").hasRole("admin") //spring security 默认权限前面自带ROLE_前缀
+                .anyRequest()
+                .fullyAuthenticated()//完整权限可以访问(和authenticated()区别是 authenticated()包括remember-me用户)
                 .and()
                 .formLogin()
                 .loginPage("/login") //跳转的登录页
@@ -82,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/img/**");
+                .antMatchers("/img/**", "/css/**", "/js/**");
     }
 
     @Override
@@ -90,11 +91,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
-        auth
+        /*auth
                 .inMemoryAuthentication()
                 .withUser("2")
                 .password("2")
-                .roles("USER");
+                .roles("USER");*/
     }
 
     /*@Override

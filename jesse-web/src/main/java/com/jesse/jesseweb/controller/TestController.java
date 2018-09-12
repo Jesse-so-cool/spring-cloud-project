@@ -1,7 +1,9 @@
 package com.jesse.jesseweb.controller;
 
+import com.jesse.jesseweb.entity.Role;
 import com.jesse.jesseweb.entity.User;
-import com.jesse.jesseweb.enume.Role;
+import com.jesse.jesseweb.enume.RoleEnum;
+import com.jesse.jesseweb.mapper.RoleMapper;
 import com.jesse.jesseweb.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,28 @@ public class TestController {
     @Autowired
     private UserMapper userMapper;
 
-    @ResponseBody
+    @Autowired
+    private RoleMapper roleMapper;
+
+    /*@ResponseBody
     @RequestMapping(value = "/createUser", method = RequestMethod.GET)
     public String createUser(String username) {
-        User user = userMapper.insert(new User(username, "password", Role.USER));
+        User user = userMapper.insert(new User(username, "password", RoleEnum.USER));
         return user.toString();
+    }*/
+
+    @ResponseBody
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String user(String username) {
+        User user = userMapper.selectByUsername(username);
+        return user.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/createRole", method = RequestMethod.GET)
+    public String createRole(String role) {
+        int i = roleMapper.insert(new Role(role));
+        return roleMapper.selectByPrimaryKey(i).getRole();
     }
 
     @RequestMapping(value = "/header", method = RequestMethod.GET)
@@ -60,6 +79,7 @@ public class TestController {
         for (int i = 0; i < 1; i++) {
 
         }
+
         return "articleEdit";
     }
 }
