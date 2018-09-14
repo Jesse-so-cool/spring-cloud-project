@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Jesse">
 
-    <title>文章编辑</title>
+    <title>文章信息</title>
     <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -18,7 +18,7 @@
         $(document).ready(function () {
             var textarea = $('#text'),
                     toolbar = $('<div class="markdown-editor" id="md-button-bar" />').insertBefore(textarea.parent())
-            preview = $('<div id="md-preview" class="md-hidetab" />').insertAfter('.markdown-editor');
+            preview = $('<div id="md-preview" style="height: 100%" <!--class="md-hidetab"--> />').insertAfter('.markdown-editor');
 
             var options = {};
 
@@ -152,8 +152,9 @@
             });
 
             editor.hooks.chain('onPreviewRefresh', function () {
-                var diff = $('.diff', preview), scrolled = false;
 
+                var diff = $('.diff', preview), scrolled = false;
+                console.log(diff);
                 $('img', preview).load(function () {
                     if (scrolled) {
                         preview.scrollTo(diff, {
@@ -180,23 +181,28 @@
             editor.hooks.chain('enterFakeFullScreen', function () {
                 th = textarea.height();
                 ph = preview.height();
-                $(document.body).addClass('fullscreen');
+                //$(document.body).addClass('fullscreen');
+                $('#Article').addClass('fullscreen')
                 var h = $(window).height() - toolbar.outerHeight();
 
-                textarea.css('height', h);
+                textarea.hide();
+                preview.css('width', '100%');
                 preview.css('height', h);
+                $('md-button-bar').hide();
             });
 
             editor.hooks.chain('enterFullScreen', function () {
                 $(document.body).addClass('fullscreen');
 
                 var h = window.screen.height - toolbar.outerHeight();
-                textarea.css('height', h);
+                //textarea.css('height', h);
                 preview.css('height', h);
+                preview.css('width', '100%');
             });
 
             editor.hooks.chain('exitFullScreen', function () {
                 $(document.body).removeClass('fullscreen');
+                textarea.show();
                 textarea.height(th);
                 preview.height(ph);
             });
@@ -204,7 +210,7 @@
             editor.run();
 
             // 编辑预览切换
-            var edittab = $('#md-button-bar').prepend('<div class="md-edittab"><span id="upload" href="#md-upload" >上传图片</span><a href="#md-editarea" class="active">撰写</a><a href="#md-preview">预览</a></div>'),
+            var edittab = $('#md-button-bar').prepend(),
                     editarea = $(textarea.parent()).attr("id", "md-editarea");
 
             $(".md-edittab a").click(function () {
@@ -245,6 +251,11 @@
                     obj.value = obj.value.substr(0, obj.selectionStart) + charvalue + obj.value.substring(obj.selectionStart, leng);
                 }
             }
+
+            $('#text').val("#Title\n" +
+                    "\n" +
+                    "##content");
+            $('#md-button-row').hide();
         });
     </script>
     <style>
@@ -258,17 +269,12 @@
 
 <body>
 <#include "header.ftl" >
-<div style="margin-left: 20%;width: 60%;margin-top: 15px">
+<div style="margin-left: 20%;width: 60%;margin-top: 15px" id="article">
     <div style="margin-top:1em">
-        <textarea style="height: 400px" autocomplete="off" id="text" name="text" class="markdown-textarea"></textarea>
+        <textarea style="height: 100px" autocomplete="off" id="text" name="text"
+                  class="markdown-textarea md-hidetab"></textarea>
     </div>
-    <div style="line-height:24px;font-size:12px;color:#999;">&nbsp;&nbsp;&nbsp;&nbsp;MarkDown使用手册可参考：<a
-            style="color:#666;text-decoration:none" href="http://www.ubuntu.com/markdown/">http://www.ubuntu.com/markdown/</a>
-    </div>
-    <div style=" margin-left: 85%">
-        <button type="button" class="btn btn-success">发布</button>
-        <button type="button" class="btn btn-warning">保存</button>
-    </div>
+
 </div>
 <#include "footer.ftl" >
 </body>

@@ -20,10 +20,10 @@
 
     <script>
         $(function () {
-            $('.article').mouseenter(function () {
+            $('.Article').mouseenter(function () {
                 $(this).css("background-color", "#FFFDD5");
             });
-            $('.article').mouseleave(function () {
+            $('.Article').mouseleave(function () {
                 $(this).css("background-color", "white");
             })
         })
@@ -32,7 +32,7 @@
 
 <body>
 <#include "header.ftl" >
-<div style="margin-left: 20%;width: 60%;margin-top: 15px">
+<div style="margin-left: 20%;width: 60%; margin-top: 20;">
     <nav class="bottom-inline"
          style=" background-color:#fff;  display:-webkit-box; display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;  ">
         <h5 class="hot">热门文章</h5>
@@ -44,86 +44,24 @@
         </ul>
     </nav>
     <ul>
-        <li class="bottom-inline">
-            <div class="content-box article">
-                <div>
+        <#list map.articleList.list as article>
+            <li class="bottom-inline">
+                <div class="content-box article">
                     <div>
-                        <a href="#">
-                            <h3>hello world</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <span class="label label-warning">标签1</span>
-                        <span>Jesse</span>
-                        <span>·2days</span>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="bottom-inline">
-            <div class="content-box article">
-                <div>
-                    <div>
-                        <a href="#">
-                            <h3>hello world</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <span class="label label-success">标签2</span>
-                        <span>Jesse</span>
-                        <span>·2days</span>
+                        <div>
+                            <a href="/articleInfo">
+                                <h3>${article.title}</h3>
+                            </a>
+                        </div>
+                        <div>
+                            <span class="label label-warning">标签1</span>
+                            <span>${article.username}</span>
+                            <span>·2days</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-        <li class="bottom-inline">
-            <div class="content-box article">
-                <div>
-                    <div>
-                        <a href="#">
-                            <h3>hello world</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <span class="label label-danger">标签2</span>
-                        <span>Jesse</span>
-                        <span>·2days</span>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="bottom-inline">
-            <div class="content-box article">
-                <div>
-                    <div>
-                        <a href="#">
-                            <h3>hello world</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <span class="label label-info">标签2</span>
-                        <span>Jesse</span>
-                        <span>·2days</span>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="bottom-inline">
-            <div class="content-box article">
-                <div>
-                    <div>
-                        <a href="#">
-                            <h3>hello world</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <span class="label label-primary">标签2</span>
-                        <span>Jesse</span>
-                        <span>·2days</span>
-                    </div>
-                </div>
-            </div>
-        </li>
+            </li>
+        </#list>
     </ul>
     <div class="page-footer">
         <nav aria-label="Page navigation" style="margin-left: auto;margin-right: auto;width: 250px;">
@@ -148,5 +86,5 @@
     </div>
 
 </div>
-<#include "footer.ftl" >
+<#--<#include "footer.ftl" >-->
 </body>

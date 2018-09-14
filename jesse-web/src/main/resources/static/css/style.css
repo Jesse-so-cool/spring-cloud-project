@@ -314,7 +314,7 @@ body {
 }
 
 .fullscreen .md-hidetab {
-    display: block;
+    /*display: block;*/
 }
 
 .fullscreen .md-visualhide {

@@ -15,13 +15,13 @@
     </style>
 </head>
 <body>
-<div class="header clearfix">
+<div class="header clearfix" style="position:relative;width: 100%;height: 84px">
     <div style="margin-left: 20%;height: 5rem;width：60%">
         <a href="index">
-            <img src="/img/cp.jpg" class="img-thumbnail" style="width: 105;"/>
+            <img src="/img/jesse's logo.jpg" class="img-thumbnail" style="width: 105;border-width:0;"/>
         </a>
     </div>
-    <nav style="margin-right: 20%;margin-top: 20px">
+    <nav style="margin-right: 20%;margin-top: -18px;">
         <ul class="nav nav-tabs pull-right">
             <li roleEnum="presentation"><a href="/">主页</a></li><#--
             <li roleEnum="presentation"><a href="login">登陆</a></li>
