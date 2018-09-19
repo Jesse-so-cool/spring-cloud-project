@@ -245,6 +245,20 @@
                     obj.value = obj.value.substr(0, obj.selectionStart) + charvalue + obj.value.substring(obj.selectionStart, leng);
                 }
             }
+
+            $('#publish').click(function () {
+                submit('published');
+            })
+
+            $('#save').click(function () {
+                submit('save');
+            })
+
+            function submit(status) {
+                var input = '<input type="hidden" name="status" value="' + status + '">';
+                $('#form').append(input);
+                $('#form').submit();
+            }
         });
     </script>
     <style>
@@ -259,16 +273,20 @@
 <body>
 <#include "header.ftl" >
 <div style="margin-left: 20%;width: 60%;margin-top: 15px">
-    <div style="margin-top:1em">
-        <textarea style="height: 400px" autocomplete="off" id="text" name="text" class="markdown-textarea"></textarea>
-    </div>
-    <div style="line-height:24px;font-size:12px;color:#999;">&nbsp;&nbsp;&nbsp;&nbsp;MarkDown使用手册可参考：<a
-            style="color:#666;text-decoration:none" href="http://www.ubuntu.com/markdown/">http://www.ubuntu.com/markdown/</a>
-    </div>
-    <div style=" margin-left: 85%">
-        <button type="button" class="btn btn-success">发布</button>
-        <button type="button" class="btn btn-warning">保存</button>
-    </div>
+    <form id="form" action="/article/submit" method="post">
+        <div style="margin-top:1em">
+            <input type="text" id="title" name="title" autocomplete="off" value="title" style="width: 100%"/>
+            <textarea style="height: 400px" autocomplete="off" id="text" name="content"
+                      class="markdown-textarea"></textarea>
+        </div>
+        <div style="line-height:24px;font-size:12px;color:#999;">&nbsp;&nbsp;&nbsp;&nbsp;MarkDown使用手册可参考：
+            <a style="color:#666;text-decoration:none" href="http://www.ubuntu.com/markdown/">http://www.ubuntu.com/markdown/</a>
+        </div>
+        <div style=" margin-left: 85%">
+            <button type="button" class="btn btn-success" id="publish">发布</button>
+            <button type="button" class="btn btn-warning" id="save">保存</button>
+        </div>
+    </form>
 </div>
 <#include "footer.ftl" >
 </body>

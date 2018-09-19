@@ -26,6 +26,8 @@
             $('.Article').mouseleave(function () {
                 $(this).css("background-color", "white");
             })
+            var root = window.document.location.href;
+            root = root.substring(0, root.indexOf("index"));
         })
     </script>
 </head>
@@ -49,7 +51,7 @@
                 <div class="content-box article">
                     <div>
                         <div>
-                            <a href="/articleInfo">
+                            <a href="/article/${article.id}">
                                 <h3>${article.title}</h3>
                             </a>
                         </div>
@@ -67,17 +69,20 @@
         <nav aria-label="Page navigation" style="margin-left: auto;margin-right: auto;width: 250px;">
             <ul class="pagination">
                 <li>
-                    <a href="#" aria-label="Previous">
+                    <a href="/index?pageNo=${map.articleList.pageNum-1}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <#if !map.articleList.isFirstPage>
+                    <li><a href="/index?pageNo=${map.articleList.pageNum-1}">${map.articleList.pageNum-1}</a></li>
+                </#if>
+                <li><a href="/index?pageNo=${map.articleList.pageNum}" class="active">${map.articleList.pageNum}</a>
+                </li>
+                <#if !map.articleList.isLastPage>
+                <li><a href="/index?pageNo=${map.articleList.pageNum+1}">${map.articleList.pageNum+1}</a></li>
+                </#if>
                 <li>
-                    <a href="#" aria-label="Next">
+                    <a href="/index?pageNo=${map.articleList.pageNum+1}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

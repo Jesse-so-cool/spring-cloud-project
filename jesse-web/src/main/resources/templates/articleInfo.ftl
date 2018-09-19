@@ -252,9 +252,7 @@
                 }
             }
 
-            $('#text').val("#Title\n" +
-                    "\n" +
-                    "##content");
+            $('#text').val($('#content').val());
             $('#md-button-row').hide();
         });
     </script>
@@ -271,6 +269,7 @@
 <#include "header.ftl" >
 <div style="margin-left: 20%;width: 60%;margin-top: 15px" id="article">
     <div style="margin-top:1em">
+        <input type="hidden" value="${article.content}" id="content">
         <textarea style="height: 100px" autocomplete="off" id="text" name="text"
                   class="markdown-textarea md-hidetab"></textarea>
     </div>

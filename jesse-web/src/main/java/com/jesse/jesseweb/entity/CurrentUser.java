@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Data
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
-    //private User user;
+    private User user;
 
     private List<GrantedAuthority> authorities;
 
@@ -18,7 +18,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
         super(user.getUsername(), user.getPassword(), authorities);
 
         this.authorities = authorities;
-        //this.user = user;
+        this.user = user;
     }
 
 

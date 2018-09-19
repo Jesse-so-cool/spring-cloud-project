@@ -8,7 +8,7 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 @org.apache.ibatis.annotations.Mapper
-public interface ArticleMapper extends Mapper<UserRole> {
-    @Select("select id,user_id,username,title,view_count from article where is_deleted='0' ")
+public interface ArticleMapper extends Mapper<Article> {
+    @Select("select id,user_id,username,title,view_count from article where is_deleted='0' and status='published'")
     List<Article> getAllArticle();
 }
