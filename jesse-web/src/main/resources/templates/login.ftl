@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <style>
         .login-bg {
@@ -65,22 +65,21 @@
 
 
     </style>
-    <script>
-        /*$(function () {
-            function submit() {
-                $('#form').submit();
-            }
-        })*/
+    <script type="javascript">
+        $(function () {
+            $('#username').focus();
+        })
     </script>
 </head>
 
 <body class="login-bg " style="margin-top: 20%;">
 <div class="form-horizontal col-sm-offset-5 col-sm-4 col-sm-offset-5">
-    <form class="login-form " id="form" action="/login" method="post" autocomplete="off">
+    <form class="login-form " id="form" action="/login" method="post">
         <h3 align="left" style="margin-left: 35px">用户登录</h3>
         <div class="form-group form-inline ">
             <i class="fa fa-user fa-lg"></i>
-            <input type="text" name="username" required class="has-success input-lg form-control" placeholder="请输入账号"/>
+            <input type="text" name="username" id="username" required class="has-success input-lg form-control"
+                   placeholder="请输入账号"/>
         </div>
         <div class="form-group form-inline">
             <i class="fa fa-lock fa-lg"></i>
