@@ -16,20 +16,38 @@
 </head>
 <body>
 <div class="header clearfix" style="position:relative;width: 100%;height: 84px">
-    <div style="margin-left: 20%;height: 5rem;width：60%">
-        <a href="index">
-            <img src="/img/jesse's logo.jpg" class="img-thumbnail" style="width: 105;border-width:0;"/>
-        </a>
+    <div style="margin-left: 20%;height: 100%;width: 60%;">
+        <div>
+            <a href="/index">
+                <img src="/img/jesse's logo.jpg" class="img-thumbnail" style="width: 105;border-width:0;"/>
+            </a>
+            <nav style="margin-top: -48px;">
+                <ul class="nav nav-tabs pull-right">
+                    <li>
+                    <#--<form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>-->
+                        <form class="navbar-form navbar-left" role="search">
+                            <div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="搜索些什么...">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">go</button>
+                                </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </form>
+                    </li>
+                <#--<li roleEnum="presentation" class><a href="/">主页</a></li>
+                <li roleEnum="presentation"><a href="/logout">注销</a></li>-->
+                </ul>
+            </nav>
+        </div>
+
     </div>
-    <nav style="margin-right: 20%;margin-top: -18px;">
-        <ul class="nav nav-tabs pull-right">
-            <li roleEnum="presentation"><a href="/">主页</a></li><#--
-            <li roleEnum="presentation"><a href="login">登陆</a></li>
-            <li roleEnum="presentation"><a href="admin">注册</a></li>-->
-            <li roleEnum="presentation"><a href="/logout">注销</a></li>
-            <li roleEnum="presentation"><a href="/about">关于我们</a></li>
-        </ul>
-    </nav>
 
 
 </div>
