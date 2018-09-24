@@ -28,6 +28,10 @@
             })
             var root = window.document.location.href;
             root = root.substring(0, root.indexOf("index"));
+
+            $('love').click(function () {
+
+            })
         })
     </script>
 </head>
@@ -58,7 +62,9 @@
                         <div>
                             <span class="label label-warning">标签1</span>
                             <span>${article.username}</span>
-                            <span>·2days</span>
+                            <span>${article.deployDate}</span>
+                            <span>${article.viewCount}</span>
+                            <span class="glyphicon glyphicon-heart" aria-hidden="true" id="love"></span>
                         </div>
                     </div>
                 </div>

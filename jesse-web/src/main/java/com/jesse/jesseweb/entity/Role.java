@@ -18,6 +18,7 @@ public class Role {
     }
 
     public Role(Integer id, String role) {
+        this.id = id;
         this.role = role;
     }
 }

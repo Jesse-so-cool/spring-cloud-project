@@ -13,6 +13,17 @@
             background: url(/img/cp.jpg);
         }
     </style>
+    <script>
+        $(function () {
+            $('#write').click(function () {
+                writeArticle();
+            })
+
+            function writeArticle() {
+                window.location.href = "/edit";
+            }
+        })
+    </script>
 </head>
 <body>
 <div class="header clearfix" style="position:relative;width: 100%;height: 84px">
@@ -23,6 +34,11 @@
             </a>
             <nav style="margin-top: -48px;">
                 <ul class="nav nav-tabs pull-right">
+                    <li>
+                        <button type="button" id="write" class="btn btn-primary btn-lg" <#--onclick="writeArticle()"-->>
+                            写文章
+                        </button>
+                    </li>
                     <li>
                     <#--<form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
@@ -35,8 +51,8 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="搜索些什么...">
                                     <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">go</button>
-                                </span>
+                                    <button class="btn btn-default" type="button">搜索</button>
+                                    </span>
                                 </div><!-- /input-group -->
                             </div>
                         </form>

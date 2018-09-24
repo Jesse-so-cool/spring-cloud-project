@@ -33,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                //.antMatchers("/", "/index").permitAll()
+                .antMatchers("/thirdparty/**", "/register/**", "/user").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/edit").hasRole("admin") //spring security 默认权限前面自带ROLE_前缀
                 .anyRequest()
                 .fullyAuthenticated()//完整权限可以访问(和authenticated()区别是 authenticated()包括remember-me用户)

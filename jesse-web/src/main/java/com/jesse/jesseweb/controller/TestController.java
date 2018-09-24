@@ -5,10 +5,12 @@ import com.github.pagehelper.PageInfo;
 import com.jesse.jesseweb.entity.Article;
 import com.jesse.jesseweb.entity.Role;
 import com.jesse.jesseweb.entity.User;
+import com.jesse.jesseweb.entity.UserRole;
 import com.jesse.jesseweb.enume.RoleEnum;
 import com.jesse.jesseweb.mapper.ArticleMapper;
 import com.jesse.jesseweb.mapper.RoleMapper;
 import com.jesse.jesseweb.mapper.UserMapper;
+import com.jesse.jesseweb.mapper.UserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -35,27 +37,33 @@ public class TestController {
     private RoleMapper roleMapper;
 
     @Autowired
+    private UserRoleMapper userRoleMapper;
+
+    @Autowired
     private ArticleMapper articleMapper;
-    /*@ResponseBody
-    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
-    public String createUser(String username) {
-        User user = userMapper.insert(new User(username, "password", RoleEnum.USER));
-        return user.toString();
-    }*/
+
+    @ResponseBody
+    @RequestMapping(value = "/test2", method = RequestMethod.GET)
+    public String test2(String username) {
+        return "asdasdad";
+    }
 
     @ResponseBody
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String user(String username) {
-        User user = userMapper.selectByUsername(username);
+        Role role = new Role(2, "ROLE_user");
+        User user = new User("15648424415", "15648424415");
+        userRoleMapper.insert(new UserRole(user, role));
+        //User user = userMapper.selectByUsername(username);
         return user.toString();
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping(value = "/createRole", method = RequestMethod.GET)
     public String createRole(String role) {
         int i = roleMapper.insert(new Role(role));
         return roleMapper.selectByPrimaryKey(i).getRole();
-    }
+    }*/
 
     @RequestMapping(value = "/header", method = RequestMethod.GET)
     public String header() {
@@ -77,6 +85,11 @@ public class TestController {
     @RequestMapping(value = "/login", method = {RequestMethod.GET})
     public ModelAndView login(@RequestParam Optional<String> error) {
         return new ModelAndView("login", "error", error);
+    }
+
+    @RequestMapping(value = "/register", method = {RequestMethod.GET})
+    public ModelAndView register(String error) {
+        return new ModelAndView("register", "error", error == null ? "" : error);
     }
 
     /*@RequestMapping(value = "/login", method = RequestMethod.POST)

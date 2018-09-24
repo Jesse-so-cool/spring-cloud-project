@@ -44,13 +44,33 @@
     </style>
     <script>
         $(function () {
-            $('#username').focus();
+            $('#phone').focus();
+            $('#getVerificationCode').hide();
             //alert("???");
             $('#register').click(function () {
                 window.location.href = "/register";
             })
+            $('#getVerificationCode').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/thirdparty/sendMessage",
+                    data: {
+                        "phone": $("#phone").val()
+                    },
+                    success: function () {
+                        $('#get').attr('disabled', 'disabled');
+                        $('#get').html("已发送");
+                    }
+                })
+            })
+            $('#phone').change(function () {
+                number11();
+            })
 
-            function jump() {
+            function number11() {
+                if ($('#phone').val().length == 11) {
+                    $('#getVerificationCode').show();
+                }
             }
         })
     </script>
@@ -58,25 +78,30 @@
 
 <body class="login-bg " style="margin-top: 20%;">
 <div class="form-horizontal col-sm-offset-5 col-sm-4 col-sm-offset-5">
-    <form class="login-form " id="form" action="/login" method="post">
-        <h3 align="left" style="margin-left: 35px">用户登录</h3>
+    <form class="login-form " id="form" action="/register/submitRegister" method="post">
+        <h3 align="left" style="margin-left: 35px">用户注册</h3>
         <div class="form-group form-inline ">
             <i class="fa fa-user fa-lg"></i>
-            <input type="text" name="username" id="username" required class="has-success input-lg form-control"
-                   placeholder="请输入账号"/>
+            <input type="text" name="phone" id="phone" required class="has-success input-lg form-control"
+                   placeholder="请输入手机..."/>
+        </div>
+        <div class="form-group form-inline">
+            <i class="fa fa-user fa-lg"></i>
+            <input type="text" name="verificationCode" required class=" has-success input-lg form-control"
+                   placeholder="请输入验证码"/>
+            <span class="input-group-btn" id="getVerificationCode">
+                                    <button class="btn btn-default" type="button" id="get">获取验证码</button>
+                                    </span>
         </div>
         <div class="form-group form-inline">
             <i class="fa fa-lock fa-lg"></i>
             <input type="text" name="password" required class=" has-success input-lg form-control" placeholder="请输入密码"/>
         </div>
         <div class="form-group ">
-            <#if error.isPresent()>
-                <p>The email or password you have entered is invalid, try again.</p>
+            <#if error!=''>
+                <div class="alert alert-danger" role="alert" style="width: 29%;margin-left: 8;">${error}</div>
             </#if>
-            <button class="btn btn-success btn-lg" style="margin-left: 80px" id="register" type="button"
-                    onclick="jump()">注册
-            </button>
-            <button class="btn btn-success btn-lg" type="submit">登录</button>
+            <button class="btn btn-success btn-lg" style="margin-left: 130px" id="register" type="submit">注册</button>
         <#--</div><div class="form-group ">
             <button class="btn btn-info btn-lg">注册</button>-->
         </div>

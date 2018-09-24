@@ -19,5 +19,6 @@ public interface UserMapper extends tk.mybatis.mapper.common.Mapper<User> {
     })
     User selectByUsername(String username);
 
-
+    @Insert("insert into user()")
+    List<User> insertUser(User user);
 }

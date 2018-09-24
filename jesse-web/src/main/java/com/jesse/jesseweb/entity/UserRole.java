@@ -10,6 +10,10 @@ public class UserRole {
     @Id
     private Integer id;
 
+    private Integer userId;
+
+    private Integer roleId;
+
     @Transient
     private User user;
     @Transient
@@ -20,5 +24,12 @@ public class UserRole {
         this.id = id;
         this.user = user;
         this.role = role;
+    }
+
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
+        this.userId = user.getId();
+        this.roleId = role.getId();
     }
 }

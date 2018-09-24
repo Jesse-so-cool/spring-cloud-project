@@ -36,7 +36,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public ModelAndView submitArticle(String content, String status) {
+    public ModelAndView submitArticle(String title, String content, String status) {
         CurrentUser userDetails = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
@@ -45,6 +45,8 @@ public class ArticleController {
         article.setUserId(userDetails.getUser().getId());
         article.setContent(content);
         article.setStatus(status);
+        article.setViewCount(0);
+        article.setTitle("".equals(title) ? "Title" : title);
         if (ArticleStatusEnum.PUBLISHED.getCode().equals(status)) {
             article.setDeployDate(new Date(System.currentTimeMillis()));
         }

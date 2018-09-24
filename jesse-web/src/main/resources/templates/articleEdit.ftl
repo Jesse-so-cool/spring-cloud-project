@@ -275,7 +275,7 @@
 <div style="margin-left: 20%;width: 60%;margin-top: 15px">
     <form id="form" action="/article/submit" method="post">
         <div style="margin-top:1em">
-            <input type="text" id="title" name="title" autocomplete="off" value="title" style="width: 100%"/>
+            <input type="text" id="title" name="title" autocomplete="off" placeholder="主题" style="width: 100%"/>
             <textarea style="height: 400px" autocomplete="off" id="text" name="content"
                       class="markdown-textarea"></textarea>
         </div>
