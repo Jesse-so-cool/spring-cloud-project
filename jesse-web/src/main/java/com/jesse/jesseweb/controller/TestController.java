@@ -87,6 +87,11 @@ public class TestController {
         return new ModelAndView("login", "error", error);
     }
 
+    @RequestMapping(value = "/githubLogin", method = {RequestMethod.GET})
+    public ModelAndView githubLogin() {
+        return new ModelAndView("redirect:https://github.com/login/oauth/authorize?client_id=51e1a48f18d8d9bda59c&state=xxx&redirect_uri=http://localhost:8088/oauth/github");
+    }
+
     @RequestMapping(value = "/register", method = {RequestMethod.GET})
     public ModelAndView register(String error) {
         return new ModelAndView("register", "error", error == null ? "" : error);

@@ -49,7 +49,9 @@
             $('#register').click(function () {
                 window.location.href = "/register";
             })
-
+            $('#githubLogin').click(function () {
+                window.location.href = "/githubLogin";
+            })
             function jump() {
             }
         })
@@ -79,6 +81,14 @@
             <button class="btn btn-success btn-lg" type="submit">登录</button>
         <#--</div><div class="form-group ">
             <button class="btn btn-info btn-lg">注册</button>-->
+        </div>
+        <div class="form-group " style="margin-left: 2px">
+            <h4 style="margin-left: 30px">第三方帐号登录</h4>
+            <a id="githubAuthorizationUrl"
+               href="https://github.com/login/oauth/authorize?client_id=51e1a48f18d8d9bda59c&state=xxx&redirect_uri=http://localhost:8088/oauth/github"
+               class="github">
+                <img src="/img/githublogo.jpg" class="img-thumbnail" style="width: 40;border-width:0;">
+            </a>
         </div>
     </form>
 

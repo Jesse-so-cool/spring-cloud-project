@@ -1,5 +1,6 @@
 package com.jesse.jesseweb.auth;
 
+import com.jesse.jesseweb.integration.IntegrationAuthenticationFilter;
 import com.jesse.jesseweb.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author Jesse
@@ -25,16 +27,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //@Autowired
     //private MyUserDetailsService myUserDetailsService;
-
+    @Autowired
+    private IntegrationAuthenticationFilter integrationAuthenticationFilter;
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
+        http.addFilterBefore(integrationAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
                 .antMatchers("/thirdparty/**", "/register/**", "/user").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/edit").hasRole("admin") //spring security 默认权限前面自带ROLE_前缀
                 .anyRequest()
                 .fullyAuthenticated()//完整权限可以访问(和authenticated()区别是 authenticated()包括remember-me用户)
@@ -98,6 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("2")
                 .roles("USER");*/
     }
+
 
     /*@Override
     protected UserDetailsService userDetailsService() {

@@ -204,7 +204,7 @@
             editor.run();
 
             // 编辑预览切换
-            var edittab = $('#md-button-bar').prepend('<div class="md-edittab"><span id="upload" href="#md-upload" >上传图片</span><a href="#md-editarea" class="active">撰写</a><a href="#md-preview">预览</a></div>'),
+            var edittab = $('#md-button-bar').prepend('<div class="md-edittab"><label>上传<input type="file" id="upload"  style="display: none" value="上传"/></label><a href="#md-editarea" class="active">撰写</a><a href="#md-preview">预览</a></div>'),
                     editarea = $(textarea.parent()).attr("id", "md-editarea");
 
             $(".md-edittab a").click(function () {
@@ -227,9 +227,33 @@
 
                 return false;
             });
-
-            $('#upload').click(function () {
-                insertText(text, 'x');
+            var i = 0;
+            $('#upload').change(function () {
+                if ($(this).val() != "") {
+                    var formData = new FormData();
+                    //1获取传入元素的val
+                    var name = $(this).val();
+                    //2获取files
+                    var files = $(this)[0].files[0];
+                    //3将name 和 files 添加到formData中，键值对形式
+                    formData.append("upload_file", files);
+                    formData.append("name", name);
+                    $.ajax({
+                        url: "/upload/uploadImg",
+                        type: "post",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            i = parseInt(i) + parseInt(1);
+                            if (result.isSuccess) {
+                                console.log(result.path);
+                                insertText(text, "![][" + i + "]\n" +
+                                        "  [" + i + "]:  " + result.path);
+                            }
+                        }
+                    })
+                }
             })
 
 
@@ -251,7 +275,8 @@
             })
 
             $('#save').click(function () {
-                submit('save');
+                insertText(text, 'qwe');
+                //submit('save');
             })
 
             function submit(status) {
